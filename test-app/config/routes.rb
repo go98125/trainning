@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   resources :test2s
-
   resources :drinks
+  resources :groups
 
   # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+ # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'hello#index'
 
+
+
   # Example of regular route:
   get 'hello/test' => 'hello#test'
-
+  get 'events' => 'events#index'  
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
@@ -57,4 +59,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+   # match ':controller(/:action(/:id(.:format)))'
 end
