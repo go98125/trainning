@@ -3,10 +3,12 @@ class GroupsController < ApplicationController
         @groups = Group.all
     end
     def show
-		@group=Group.find(params[:id])
+		@group=Group.params[:id]
+		@posts=@group.posts
 	end
 	def new
 		@group=Group.new
+
 	end
 	def create
 		@group=Group.new(group_params)
@@ -15,21 +17,13 @@ class GroupsController < ApplicationController
 	end
 	def edit
 		@group=Group.find(params[:id])
+		@post=@group.posts.find(params[:id])
 	end
 	def update 
 		@group=Group.find(params[:id])
 		if @group.update(group_params)
 			redirect_to group_path(@group)
 			#redirect_to groups_path
-		else
-			render :edit
-		end
-	end
-	def update
-		@group=Group.find(params[:id])
-		if @group.update(group_params)
-			#redirect_to group_path(@group)
-			redirect_to groups_path
 		else
 			render :edit
 		end
