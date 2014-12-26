@@ -41,4 +41,7 @@ gem 'simple_form'
 
 gem 'mysql2'
 
+gem 'devise'
+
+gem "omniauth"
 

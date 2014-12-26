@@ -13,7 +13,9 @@
 			<tr>
 				<td><%=post.content%></td>
 				<td><%=link_to("Edit", edit_group_post_path(post.group, post), :class=>"btn btn-mini")%>
-					<%=link_to("Delete", group_post_path(post.group, post), :class=>"btn btn-mini", :method=>:delete, :confirm=>"AAre you sure?")%></td>
+					<%=link_to("Delete", group_post_path(post.group, post), :class=>"btn btn-mini", :method=>:delete, :confirm=>"AAre you sure?")%>
+					<%= link_to( "Sign Up" ,new_user_registration_path) %>
+				</td>
 			</tr>	
 			<%end%>
 		</tbody>
