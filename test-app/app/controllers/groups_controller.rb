@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
-	before_action :login_required, :only => [:new, :create, :edit,:update,:destroy]
+	before_action :authenticate_user!, :only => [:new, :create, :edit,:update,:destroy]
+    
     def index
         @groups = Group.all
     end
@@ -12,11 +13,10 @@ class GroupsController < ApplicationController
 
 	end
 	def create	
-		<% comment do %>
-		@group=Group.new(group_params)
-		@group.save
-		redirect_to groups_path
-		<% end %>
+		#@group=Group.new(group_params)
+		#@group.save
+		#redirect_to groups_path
+		
 		@group=current_user.groups.build(group_params)
 		if @group.save
 			redirect_to groups_path
@@ -25,22 +25,19 @@ class GroupsController < ApplicationController
 		end
 	end
 	def edit
-		<% comment do %>
-		@group=Group.find(params[:id])
+		#@group=Group.find(params[:id])
 		#@post=@group.posts.find(params[:id])
-		<%end%>
+		
 		@group = current_user.groups.find(params[:id])
 	end
 	def update 
-		<% comment do %>
-		@group=Group.find(params[:id])
-		if @group.update(group_params)
-			redirect_to group_path(@group)
-			#redirect_to groups_path
-		else
-			render :edit
-		end
-		<%end%>
+		#@group=Group.find(params[:id])
+		#if @group.update(group_params)
+		#	redirect_to group_path(@group)
+		#	#redirect_to groups_path
+		#else
+		#	render :edit
+		#end
 		@group = current_user.groups.find(params[:id])
 		if @group.update(group_params)
 			redirect_to group_path(@group)
@@ -49,11 +46,9 @@ class GroupsController < ApplicationController
 		end
 	end
 	def destroy
-		<% comment do %>
-		@group=Group.find(params[:id])
-		@group.destroy
-		redirect_to groups_path
-		<%end%>
+		#@group=Group.find(params[:id])
+		#@group.destroy
+		#redirect_to groups_path
 		@group=current_user.groups.find(params[:id])
 		@group.destroy
 		redirect_to groups_path
